@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class _5_2_AddingAngles {
+    static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) {
+	int count = input.nextInt();
+	int[] number = new int[count];
+	boolean isTrue = false;
+	for (int i = 0; i < count; i++) {
+	    number[i] = input.nextInt();
+	}
+	for (int a = 0; a < number.length; a++) {
+	    for (int b = a + 1; b < number.length; b++) {
+		for (int c = b + 1; c < number.length; c++) {
+		    int total = number[a] + number[b] + number[c];
+		    if (total % 360 == 0) {
+			System.out.printf("%d + %d + %d = %d degrees%n",
+				number[a], number[b], number[c], total);
+			isTrue = true;
+		    }
+		}
+	    }
+	}
+	if (!isTrue) {
+	    System.out.println("No");
+	}
+    }
+}

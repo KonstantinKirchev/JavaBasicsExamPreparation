@@ -1,0 +1,35 @@
+import java.util.Scanner;
+import java.util.TreeMap;
+
+public class _5_4_ActivityTracker {
+    static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) {
+	int n = input.nextInt();
+	input.nextLine();
+	TreeMap<Integer, TreeMap<String, Integer>> userInfo = new TreeMap<>();
+	for (int i = 0; i < n; i++) {
+	    String[] line = input.nextLine().trim().split("[\\/ ]");
+	    int month = Integer.parseInt(line[1]);
+	    String user = line[3];
+	    int distance = Integer.parseInt(line[4]);
+	    if (!userInfo.containsKey(month)) {
+		userInfo.put(month, new TreeMap<String, Integer>());
+	    }
+	    int oldDistance = 0;
+	    TreeMap<String,Integer> info = userInfo.get(month);
+	    if (info.containsKey(user)) {
+		oldDistance = info.get(user);
+	    }
+	    info.put(user, oldDistance+distance);
+	}
+	for (Integer in : userInfo.keySet()) {
+		System.out.print(in+ ": ");
+		System.out.println(userInfo.get(in).toString()
+			.replace("{", "")
+			.replace("}", ")")
+			.replace("=", "(")
+			.replace(",", "),"));
+	    }
+    }
+}

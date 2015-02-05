@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class _5_1_DozensOfEggs {
+    static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) {
+	int dozens = 0;
+	int eggs = 0;
+	for (int i = 0; i < 7; i++) {
+	    String[] str = input.nextLine().split(" ");
+	    int quantity = Integer.parseInt(str[0]);
+	    String item = str[1];
+	    if (item.equals("eggs")) {
+		eggs += quantity;
+		while (eggs >= 12) {
+		    dozens++;
+		    eggs -= 12;
+		}
+	    }
+	    if (item.equals("dozens")) {
+		dozens += quantity;
+	    }
+	}
+	System.out.printf("%d dozens + %d eggs", dozens, eggs);
+    }
+}
